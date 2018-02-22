@@ -1,11 +1,11 @@
 import csv
 import matplotlib.pyplot as plt
-import pandas as pd
 import matplotlib.dates as mdates
 import numpy as np
 from scipy.signal import argrelextrema
 from datetime import datetime
 from sys import maxsize
+from time import sleep
 
 
 min_price, max_price = maxsize, -maxsize 
@@ -24,7 +24,10 @@ def plot_data(horizontal_lines):
 	""" Display Plot """
 	plt.show()
 
+def between(lower, upper, val):
+	return lower <= val and val <= upper
 
+"""This function fills in data to the price_points dictionary"""
 def compute_price_points(min_price, max_price):
 	global critical_points, price_points
 	delta = abs(max_price - min_price) * 0.05
@@ -43,9 +46,6 @@ def compute_price_points(min_price, max_price):
 					price_points[mid] = 1
 				break
 			lo = hi
-
-def between(lower, upper, val):
-	return lower <= val and val <= upper
 
 def main():
 	""" 
@@ -83,17 +83,21 @@ def main():
 	sorted_keys: an array of sorted keys for the dictionary 'price_points'
 	price_points: (dictionary)
 	key:	price bin
-	value: 	number of local maxima within in this bin (TODO: update this to include minima)
+	value: 	number of local maxima and minima within a given bin
 	"""
 	sorted_keys = sorted(price_points, key=price_points.__getitem__, reverse=True)
 
 	support_lines = []
+	border = "*" * 53
+	print(border)
+	print("Price Point of Bin : Number of Data Points within Bin")
+	print(border)
 	"""Pulls top 5 bins with most data points within them"""
 	for i in range(5):
 		val = sorted_keys[i]
 		print("{} : {}".format(val, price_points[val]))
 		support_lines.append(val)
-	
+
 	# plot_data(support_lines)
 
 
