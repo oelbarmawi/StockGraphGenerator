@@ -98,7 +98,10 @@ def main():
 		print("{} : {}".format(val, price_points[val]))
 		support_lines.append(val)
 
-	# plot_data(support_lines)
+	# sleep(10*60)
+	# print("waited 3 seconds")
+
+	plot_data(support_lines)
 
 
 if __name__ == "__main__":
