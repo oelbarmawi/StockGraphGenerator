@@ -1,10 +1,11 @@
 from bs4 import BeautifulSoup
 from urllib3 import PoolManager
 from GenerateSupportLines import *
+import os
 
 
-def main():
-	tickers = ['GOOG', 'TWTR', 'SIRI']
+def child():
+	tickers = ['GOOG', 'TWTR', 'SIRI', 'UGAZ']
 	border = "*" * 25
 	print(border)
 	for t in tickers:
@@ -24,8 +25,17 @@ def main():
 
 		print("{} price:\t\t${}".format(t, current_price))
 		print(border)
-		
-	
+	print()
 
+def main():
+	# while True:
+	pid = os.fork()
+	if pid == 0: # child process
+		child()
+		sleep(10)
+	else:
+		os.wait()
+	
+		
 if __name__ == '__main__':
 	main()

@@ -95,13 +95,14 @@ def main():
 	"""Pulls top 5 bins with most data points within them"""
 	for i in range(5):
 		val = sorted_keys[i]
-		print("{} : {}".format(val, price_points[val]))
+		# print("{} : {}".format(val, price_points[val]))
 		support_lines.append(val)
 
 	# sleep(10*60)
 	# print("waited 3 seconds")
 
-	plot_data(support_lines)
+	# plot_data(support_lines)
+	return [str(s) for s in support_lines]
 
 
 if __name__ == "__main__":
