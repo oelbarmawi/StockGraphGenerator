@@ -7,7 +7,9 @@ import os
 
 def child():
 	tickers = ['GOOG', 'TWTR', 'SIRI', 'UGAZ']
-	border = "*" * 25
+	border = "*" * 30
+	print()
+	print("TIME:", datetime.now().time())
 	print(border)
 	for t in tickers:
 	# alternate_url = 'http://finance.google.com/finance?q='
@@ -23,20 +25,25 @@ def child():
 		p = soup.find("div", { "class": "My(6px) smartphone_Mt(15px)"})
 		current_price = p.find("span", { "class": "Trsdu(0.3s) Fw(b) Fz(36px) Mb(-4px) D(ib)"}).text.strip()
 
+		
 		print("{} price:\t\t${}".format(t, current_price))
 		print(border)
-	print()
+	
 
 def main():
-	# while True:
-	pid = os.fork()
-	if pid == 0: # child process
-		child()
-		# sleep(10)
-	else:
-		"""If parent process runs first, wait for child process"""
-		os.wait()
-	
+	while True:
+		try:
+			pid = os.fork()
+			if pid == 0: # child process
+				child()
+				sleep(5*60)
+			else:
+				"""If parent process runs first, wait for child process"""
+				os.wait()
+		except KeyboardInterrupt:
+			if pid == 0:
+				print("\nExiting...")
+			exit() #System call
 		
 if __name__ == '__main__':
 	main()
