@@ -4,7 +4,7 @@ import matplotlib.dates as mdates
 import numpy as np
 from scipy.signal import argrelextrema
 from datetime import datetime
-from sys import maxsize
+from sys import maxsize, exit
 from time import sleep
 
 
