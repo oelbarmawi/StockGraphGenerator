@@ -5,8 +5,8 @@ import certifi
 import os
 import smtplib
 
-"""Cycle repeats every 'time_repeat' minutes"""
-time_repeat = 5 * 60
+"""Cycle repeats every 'sleep_time' minutes"""
+sleep_time = 5 * 60
 """
 'targets' (dictonary)
 key: ticker (string)
@@ -30,7 +30,7 @@ def sendEmail(subject, message_body):
 	except:
 		print("Unable to send email.")
 
-def child():
+def getLiveData():
 	global targets 
 	border = "*" * 30
 	print()
@@ -104,8 +104,8 @@ def main():
 		try:
 			pid = os.fork()
 			if pid == 0: # child process
-				child()
-				sleep(time_repeat)
+				getLiveData()
+				sleep(sleep_time)
 			else:
 				"""If parent process runs first, wait for child process"""
 				os.wait()
