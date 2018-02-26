@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 from urllib3 import PoolManager
-import certifi
 from GenerateSupportLines import *
+import certifi
 import os
 import smtplib
 
@@ -61,30 +61,19 @@ def child():
 		if current_price < stop_loss:
 			print("--->STOP LOSS hit:\t${}".format(stop_loss))
 			subj = "Stop-Loss hit! Sell {}!".format(t)
-			sendEmail(subj, message)
+			# sendEmail(subj, message)
 
 		elif current_price >= target_price:
 			print("--->TARGET hit:\t${}".format(target_price))
 			subj = "Target hit! Sell {}".format(t)
-			sendEmail(subj, message)
+			# sendEmail(subj, message)
 
 		print(border)
-		
 
-def main():
-	global targets, username, password, fromaddr, toaddr
-	""" Read input file and store into 'tickers' and 'targets' dictionaries.
-	Format of the input file: 
-	<ticker_name> <stop-loss price> <target price>
-	"""
-	f = open('dummy_data.txt')
-	for line in f.readlines():
-		sep = line.split(" ")
-		if len(sep) == 3:
-			targets[sep[0].strip()] = (float(sep[1].strip()), float(sep[2].strip()))
-
-	"""Conceal email information"""
-	f1 = open('sensitive.txt')
+def getEmailCredentials(filename):
+	global username, password, fromaddr, toaddr
+	"""Read from a text file to conceal sensitive email information"""
+	f1 = open(filename)
 	for line in f1.readlines():
 		components = line.split(" ")
 
@@ -93,6 +82,22 @@ def main():
 	password = components[1]
 	fromaddr = components[2]
 	toaddr  = components[3]
+
+def readStockData(filename):
+	global targets
+	""" Read input file and store into the 'targets' dictionary.
+	Format of the input file: 
+	<ticker_name> <stop-loss price> <target price>
+	"""
+	f = open(filename)
+	for line in f.readlines():
+		sep = line.split(" ")
+		if len(sep) == 3:
+			targets[sep[0].strip()] = (float(sep[1].strip()), float(sep[2].strip()))
+
+def main():
+	readStockData('dummy_data.txt')
+	getEmailCredentials('sensitive.txt')
 
 	"""Begin web scraping"""
 	while True:
