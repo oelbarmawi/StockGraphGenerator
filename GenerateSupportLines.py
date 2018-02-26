@@ -96,10 +96,7 @@ def main():
 	for i in range(5):
 		val = sorted_keys[i]
 		# print("{} : {}".format(val, price_points[val]))
-		support_lines.append(val)
-
-	# sleep(10*60)
-	# print("waited 3 seconds")
+		support_lines.append(val)\
 
 	# plot_data(support_lines)
 	return [str(s) for s in support_lines]
