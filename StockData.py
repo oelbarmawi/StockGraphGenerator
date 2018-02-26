@@ -3,6 +3,7 @@ from urllib3 import PoolManager
 import certifi
 from GenerateSupportLines import *
 import os
+import smtplib
 
 """Cycle repeats every 'time_repeat' minutes"""
 time_repeat = 5 * 60
@@ -14,12 +15,27 @@ value: target prices (tuple of floats)
 		value[1] - TARGET price
 """
 targets = {}
+username, password = "", ""
+fromaddr, toaddr = "", ""
+
+def sendEmail(subject, message_body):
+	global username, password, fromaddr, toaddr
+	try:
+		msg = 'Subject: {}\n\n{}'.format(subject, message_body)
+		server = smtplib.SMTP('smtp.gmail.com:587')
+		server.starttls()
+		server.login(username, password)
+		server.sendmail(fromaddr, toaddr, msg)
+		server.quit()
+	except:
+		print("Unable to send email.")
 
 def child():
-	global targets
+	global targets 
 	border = "*" * 30
 	print()
-	print("TIME:", datetime.now().time())
+	current_time = datetime.now().time()
+	print("TIME:", current_time)
 	print(border)
 	for t in targets:
 		stop_loss = targets[t][0]
@@ -39,15 +55,24 @@ def child():
 		current_price = float(current_price.replace(",", ""))
 
 		print("{} price:\t\t${}".format(t, current_price))
+
+		"""Notify me if a stop-loss or a target price has been hit!"""
+		message = "The current price of {} is ${} -- Time: {}".format(t, current_price, current_time)
 		if current_price < stop_loss:
 			print("--->STOP LOSS hit:\t${}".format(stop_loss))
+			subj = "Stop-Loss hit! Sell {}!".format(t)
+			sendEmail(subj, message)
+
 		elif current_price >= target_price:
 			print("--->TARGET hit:\t${}".format(target_price))
+			subj = "Target hit! Sell {}".format(t)
+			sendEmail(subj, message)
+
 		print(border)
-	
+		
 
 def main():
-	global targets
+	global targets, username, password, fromaddr, toaddr
 	""" Read input file and store into 'tickers' and 'targets' dictionaries.
 	Format of the input file: 
 	<ticker_name> <stop-loss price> <target price>
@@ -57,6 +82,17 @@ def main():
 		sep = line.split(" ")
 		if len(sep) == 3:
 			targets[sep[0].strip()] = (float(sep[1].strip()), float(sep[2].strip()))
+
+	"""Conceal email information"""
+	f1 = open('sensitive.txt')
+	for line in f1.readlines():
+		components = line.split(" ")
+
+	"""Set up automated email credentials"""
+	username = components[0]
+	password = components[1]
+	fromaddr = components[2]
+	toaddr  = components[3]
 
 	"""Begin web scraping"""
 	while True:
