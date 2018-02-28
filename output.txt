@@ -34,3 +34,18 @@ UGAZ price:	$57.33
 AAPL price:	$178.39
 GOOG price:	$1118.29 ---> STOP LOSS hit:	$1120.0
 EBAY price:	$43.15 ---> STOP LOSS hit:	$45.0
+******************************
+TIME: 22:21:10.825302
+TWTR price:	$31.32
+GOOG price:	$1118.29 ---> STOP LOSS hit:	$1120.0
+EBAY price:	$43.15 ---> STOP LOSS hit:	$45.0
+SIRI price:	$6.29
+UGAZ price:	$57.33
+TSLA price:	$350.99
+AAPL price:	$178.39
+******************************
+TIME: 22:23:44.628219
+SIRI price:	$6.29
+EBAY price:	$43.15 ---> STOP LOSS hit:	$45.0
+AAPL price:	$178.39
+GOOG price:	$1118.29 ---> STOP LOSS hit:	$1120.0

@@ -1,12 +1,14 @@
 from bs4 import BeautifulSoup
 from urllib3 import PoolManager
-from GenerateSupportLines import *
+from datetime import datetime
+from sys import maxsize, exit
+from time import sleep
 import certifi
 import os
 import smtplib
 
-"""Cycle repeats every 'sleep_time' minutes"""
-sleep_time = 10
+"""Cycle repeats every 'sleep_time' seconds"""
+sleep_time = 5 * 60
 """
 'targets' (dictonary)
 key: ticker (string)
@@ -44,6 +46,7 @@ def getLiveData():
 		stop_loss = targets[ticker][0]
 		target_price = targets[ticker][1]
 
+		"""Scrape data from secure http server"""
 		url = "http://finance.yahoo.com/quote/" + ticker + "?/?p=" + ticker
 		http = PoolManager(cert_reqs='CERT_REQUIRED', ca_certs=certifi.where())
 		r = http.request('GET', url)
@@ -75,6 +78,7 @@ def getLiveData():
 			subj = "Target hit! Sell {}".format(ticker)
 			# sendEmail(subj, message)
 		print(border)
+		
 	output_file.write("\n")
 
 def getEmailCredentials(filename):
