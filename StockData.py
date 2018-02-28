@@ -6,7 +6,7 @@ import os
 import smtplib
 
 """Cycle repeats every 'sleep_time' minutes"""
-sleep_time = 5 * 60
+sleep_time = 10
 """
 'targets' (dictonary)
 key: ticker (string)
@@ -17,6 +17,7 @@ value: target prices (tuple of floats)
 targets = {}
 username, password = "", ""
 fromaddr, toaddr = "", ""
+output_file = open('output.txt', 'a')
 
 def sendEmail(subject, message_body):
 	global username, password, fromaddr, toaddr
@@ -31,22 +32,24 @@ def sendEmail(subject, message_body):
 		print("Unable to send email.")
 
 def getLiveData():
-	global targets 
+	global targets, output_file
 	border = "*" * 30
-	print()
 	current_time = datetime.now().time()
-	print("TIME:", current_time)
+	print("\nTIME:", current_time)
 	print(border)
-	for t in targets:
-		stop_loss = targets[t][0]
-		target_price = targets[t][1]
+	output_file.write(border)
+	output_file.write("\nTIME: ")
+	output_file.write(str(current_time))
+	for ticker in targets:
+		stop_loss = targets[ticker][0]
+		target_price = targets[ticker][1]
 
-		url = "http://finance.yahoo.com/quote/" + t + "?/?p=" + t
+		url = "http://finance.yahoo.com/quote/" + ticker + "?/?p=" + ticker
 		http = PoolManager(cert_reqs='CERT_REQUIRED', ca_certs=certifi.where())
 		r = http.request('GET', url)
 
 		if (r.status != 200):
-			print("Something Went Wrong; Status Code:", r.status)
+			print("Something Went Wrong\nStatus Code:", r.status)
 			continue
 			
 		soup = BeautifulSoup(r.data, 'lxml')
@@ -54,27 +57,31 @@ def getLiveData():
 		current_price = p.find("span", { "class": "Trsdu(0.3s) Fw(b) Fz(36px) Mb(-4px) D(ib)"}).text.strip()
 		current_price = float(current_price.replace(",", ""))
 
-		print("{} price:\t\t${}".format(t, current_price))
+		print("{} price:\t\t${}".format(ticker, current_price))
+		output_file.write("\n{} price:\t${}".format(ticker, current_price))
 
 		"""Notify me if a stop-loss or a target price has been hit!"""
-		message = "The current price of {} is ${} -- Time: {}".format(t, current_price, current_time)
+		message = "The current price of {} is ${} -- Time: {}".format(ticker, current_price, current_time)
+		
 		if current_price < stop_loss:
 			print("--->STOP LOSS hit:\t${}".format(stop_loss))
-			subj = "Stop-Loss hit! Sell {}!".format(t)
+			output_file.write(" ---> STOP LOSS hit:\t${}".format(stop_loss))
+			subj = "Stop-Loss hit! Sell {}!".format(ticker)
 			# sendEmail(subj, message)
 
 		elif current_price >= target_price:
 			print("--->TARGET hit:\t${}".format(target_price))
-			subj = "Target hit! Sell {}".format(t)
+			output_file.write(" ---> TARGET hit:\t${}".format(target_price))
+			subj = "Target hit! Sell {}".format(ticker)
 			# sendEmail(subj, message)
-
 		print(border)
+	output_file.write("\n")
 
 def getEmailCredentials(filename):
 	global username, password, fromaddr, toaddr
 	"""Read from a text file to conceal sensitive email information"""
-	f1 = open(filename)
-	for line in f1.readlines():
+	f = open(filename)
+	for line in f.readlines():
 		components = line.split(" ")
 
 	"""Set up automated email credentials"""
@@ -82,11 +89,12 @@ def getEmailCredentials(filename):
 	password = components[1]
 	fromaddr = components[2]
 	toaddr  = components[3]
+	f.close()
 
 def readStockData(filename):
 	global targets
 	""" Read input file and store into the 'targets' dictionary.
-	Format of the input file: 
+	Format of each line in the input file: 
 	<ticker_name> <stop-loss price> <target price>
 	"""
 	f = open(filename)
@@ -94,8 +102,10 @@ def readStockData(filename):
 		sep = line.split(" ")
 		if len(sep) == 3:
 			targets[sep[0].strip()] = (float(sep[1].strip()), float(sep[2].strip()))
+	f.close()
 
 def main():
+	global output_file
 	readStockData('dummy_data.txt')
 	getEmailCredentials('sensitive.txt')
 
@@ -112,6 +122,7 @@ def main():
 		except KeyboardInterrupt:
 			if pid == 0:
 				print("\nExiting...")
+				output_file.close()
 			exit() #System call
 		
 if __name__ == '__main__':
