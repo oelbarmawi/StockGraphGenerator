@@ -38,11 +38,7 @@ def sendEmail(subject, message_body):
 def getLiveData(ticker):
 	global targets, output_file, current_time
 	border = "\n" + ("*" * 30) + "\n"
-	
 	info = []
-	# print("\nTIME:", current_time)
-	# print(border)
-	# info.append("\nTIME:" + str(current_time))
 	info.append(border)
 
 	# output_file.write(border)
@@ -66,7 +62,6 @@ def getLiveData(ticker):
 	current_price = p.find("span", { "class": "Trsdu(0.3s) Fw(b) Fz(36px) Mb(-4px) D(ib)"}).text.strip()
 	current_price = float(current_price.replace(",", ""))
 
-	# print("{} price:\t\t${}".format(ticker, current_price))
 	info.append("{} price:\t\t${}".format(ticker, current_price))
 	# output_file.write("\n{} price:\t${}".format(ticker, current_price))
 
@@ -74,22 +69,19 @@ def getLiveData(ticker):
 	message = "The current price of {} is ${} -- Time: {}".format(ticker, current_price, current_time)
 	
 	if current_price < stop_loss:
-		# print("--->STOP LOSS hit:\t${}".format(stop_loss))
 		info.append("\n--->STOP LOSS hit:\t${}".format(stop_loss))
 		# output_file.write(" ---> STOP LOSS hit:\t${}".format(stop_loss))
 		subj = "Stop-Loss hit! Sell {}!".format(ticker)
 		# sendEmail(subj, message)
 
 	elif current_price >= target_price:
-		# print("--->TARGET hit:\t${}".format(target_price))
 		info.append("\n--->TARGET hit:\t${}".format(target_price))
 		# output_file.write(" ---> TARGET hit:\t${}".format(target_price))
 		subj = "Target hit! Sell {}".format(ticker)
 		# sendEmail(subj, message)
-	# print(border)
-	# info.append(border)
-	return info
 	# output_file.write("\n")
+	return info
+	
 
 def getEmailCredentials(filename):
 	global username, password, fromaddr, toaddr
