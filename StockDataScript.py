@@ -8,7 +8,7 @@ import certifi
 import smtplib
 
 """Cycle repeats every 'sleep_time' seconds"""
-sleep_time = 10
+sleep_time = 5 * 60
 """
 'targets' (dictonary)
 key: ticker (string)
