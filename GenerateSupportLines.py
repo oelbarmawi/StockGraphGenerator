@@ -55,7 +55,7 @@ def main():
 	global min_price, max_price, dates, prices
 	global critical_points, price_points
 
-	with open('Siri45.csv') as file:
+	with open('Siri180.csv') as file:
 		reader = csv.reader(file)
 		for row in reader:
 			if row[0] == 'Date' or row[1] == 'Price':
@@ -98,7 +98,7 @@ def main():
 		# print("{} : {}".format(val, price_points[val]))
 		support_lines.append(val)\
 
-	# plot_data(support_lines)
+	plot_data(support_lines)
 	return [str(s) for s in support_lines]
 
 

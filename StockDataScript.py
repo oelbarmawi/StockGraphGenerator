@@ -8,7 +8,7 @@ import certifi
 import smtplib
 
 """Cycle repeats every 'sleep_time' seconds"""
-sleep_time = 5 * 60
+sleep_time = 5
 """
 'targets' (dictonary)
 key: ticker (string)
@@ -71,10 +71,12 @@ def getLiveData(ticker):
 	target_price = targets[ticker][1]
 
 	"""Scrape data from secure http server"""
-	url = "http://finance.yahoo.com/quote/" + ticker + "?/?p=" + ticker
-	http = PoolManager(cert_reqs='CERT_REQUIRED', ca_certs=certifi.where())
-	r = http.request('GET', url)
-
+	try:
+		url = "http://finance.yahoo.com/quote/" + ticker + "?/?p=" + ticker
+		http = PoolManager(cert_reqs='CERT_REQUIRED', ca_certs=certifi.where())
+		r = http.request('GET', url)
+	except:
+		return "\nCould not find stock price for " + ticker
 	if (r.status != 200):
 		print("Something Went Wrong\nStatus Code:", r.status)
 		return
@@ -131,6 +133,7 @@ def main():
 		except KeyboardInterrupt:
 			print("\nExiting...")
 			output_file.close()
+			pool.close()
 			exit() #System call
 		
 if __name__ == '__main__':
