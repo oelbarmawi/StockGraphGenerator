@@ -3,9 +3,10 @@ from urllib3 import PoolManager
 from datetime import datetime
 from sys import maxsize, exit
 from time import sleep
-from multiprocessing import Pool, cpu_count
+from threading import Thread
 import certifi
 import smtplib
+
 
 """Cycle repeats every 'sleep_time' seconds"""
 sleep_time = 5
@@ -55,17 +56,20 @@ def readStockData(filename):
 	Format of each line in the input file: 
 	<ticker_name> <stop-loss price> <target price>
 	"""
+	tickers = []
 	f = open(filename)
 	for line in f.readlines():
 		sep = line.split(" ")
 		if len(sep) == 3:
-			targets[sep[0].strip()] = (float(sep[1].strip()), float(sep[2].strip()))
+			t = sep[0].strip()
+			targets[t] = (float(sep[1].strip()), float(sep[2].strip()))
+			tickers.append(t)
 	f.close()
-	return targets.keys()
+	return tickers
 
-def getLiveData(ticker):
+def getLiveData(ticker, unused_arg=None):
 	global targets, output_file, current_time
-	
+
 	info = []
 	stop_loss = targets[ticker][0]
 	target_price = targets[ticker][1]
@@ -102,7 +106,10 @@ def getLiveData(ticker):
 		subj = "Target hit! Sell {}".format(ticker)
 		# sendEmail(subj, message)
 
-	return ''.join(info)
+	result = ''.join(info)
+	output_file.write(result)
+	print(result)
+	return None
 
 def main():
 	global output_file, current_time
@@ -110,34 +117,36 @@ def main():
 	ticker_keys = readStockData('dummy_data.txt')
 	getEmailCredentials('sensitive.txt')
 	border = "\n" + ("*" * 30)
-	num_processes = cpu_count() # cpu_count() is 4 for my machine
 
-	"""Begin web scraping -- To terminate press Ctrl-C"""
+	"""Begin web scraping"""
 	while True:
 		try:
-			"""Creating 'num_processes' to run the getLiveData() function"""
-			pool = Pool(num_processes)
-			"""results is a list of return values from getLiveData"""
-			results = pool.map(func=getLiveData, iterable=ticker_keys)
+			threads = []
+			for t in ticker_keys:
+				threads.append(Thread(target=getLiveData, args=(t, None)))
 
 			current_time = "\nTIME: {}".format(datetime.now().time())
 			print(current_time)
 			print(border)
 			output_file.write(current_time)
 			output_file.write(border)
+			
+			for thread in threads:
+				thread.start()
 
-			for info in results:
-				output_file.write(info)
-				print(info)
+			for thread in threads:
+				thread.join()
 
-			output_file.write("\n")
-			pool.close()
 			sleep(sleep_time)
+
 		except KeyboardInterrupt:
-			print("\nExiting...")
+			"""Make sure all threads finish execution before exiting"""
+			for thread in threads:
+				thread.join()
 			output_file.close()
-			pool.close()
+			print("\nExiting...")
 			exit() #System call
-		
+
+
 if __name__ == '__main__':
 	main()
