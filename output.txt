@@ -328,3 +328,262 @@ EBAY price:		$43.93 ---> STOP LOSS hit:	$45.0
 Could not find stock price for AMZ
 TWTR price:		$35.76
 UGAZ price:		$63.53 ---> TARGET hit:	$60.0
+TIME: 17:25:22.503453
+******************************
+EBAY price:		$43.68 ---> STOP LOSS hit:	$45.0
+Could not find stock price for AMZ
+SIRI price:		$6.48
+UAA price:		$17.16
+TWTR price:		$34.85
+AAPL price:		$176.94
+TSLA price:		$329.1 ---> STOP LOSS hit:	$340.0
+UGAZ price:		$61.18 ---> TARGET hit:	$60.0
+GOOG price:		$1126.0
+TIME: 17:25:33.085728
+******************************
+EBAY price:		$43.68 ---> STOP LOSS hit:	$45.0
+GOOG price:		$1126.0
+UAA price:		$17.16
+TWTR price:		$34.85
+TSLA price:		$329.1 ---> STOP LOSS hit:	$340.0
+SIRI price:		$6.48
+AAPL price:		$176.94
+UGAZ price:		$61.18 ---> TARGET hit:	$60.0
+Could not find stock price for AMZ
+TIME: 17:25:52.133505
+******************************
+GOOG price:		$1126.0
+UAA price:		$17.16
+Could not find stock price for AMZ
+AAPL price:		$176.94
+TSLA price:		$329.1 ---> STOP LOSS hit:	$340.0
+TWTR price:		$34.85
+UGAZ price:		$61.18 ---> TARGET hit:	$60.0
+SIRI price:		$6.48
+EBAY price:		$43.68 ---> STOP LOSS hit:	$45.0
+TIME: 17:25:57.091227
+******************************
+EBAY price:		$43.68 ---> STOP LOSS hit:	$45.0
+UAA price:		$17.16
+SIRI price:		$6.48
+UGAZ price:		$61.18 ---> TARGET hit:	$60.0
+TSLA price:		$329.1 ---> STOP LOSS hit:	$340.0
+TWTR price:		$34.85
+AAPL price:		$176.94
+GOOG price:		$1126.0
+Could not find stock price for AMZ
+TIME: 17:26:01.325905
+******************************
+TWTR price:		$34.85
+TSLA price:		$329.1 ---> STOP LOSS hit:	$340.0
+GOOG price:		$1126.0
+AAPL price:		$176.94
+UAA price:		$17.16
+EBAY price:		$43.68 ---> STOP LOSS hit:	$45.0
+UGAZ price:		$61.18 ---> TARGET hit:	$60.0
+SIRI price:		$6.48
+Could not find stock price for AMZ
+TIME: 17:26:05.982302
+******************************
+GOOG price:		$1126.0
+UGAZ price:		$61.18 ---> TARGET hit:	$60.0
+UAA price:		$17.16
+TWTR price:		$34.85
+Could not find stock price for AMZ
+AAPL price:		$176.94
+TSLA price:		$329.1 ---> STOP LOSS hit:	$340.0
+EBAY price:		$43.68 ---> STOP LOSS hit:	$45.0
+SIRI price:		$6.48
+TIME: 17:26:10.598399
+******************************
+Could not find stock price for AMZ
+SIRI price:		$6.48
+TSLA price:		$329.1 ---> STOP LOSS hit:	$340.0
+GOOG price:		$1126.0
+AAPL price:		$176.94
+UGAZ price:		$61.18 ---> TARGET hit:	$60.0
+UAA price:		$17.16
+TWTR price:		$34.85
+EBAY price:		$43.68 ---> STOP LOSS hit:	$45.0
+TIME: 17:26:45.028142
+******************************
+UAA price:		$17.16
+TSLA price:		$329.1 ---> STOP LOSS hit:	$340.0
+Could not find stock price for AMZ
+UGAZ price:		$61.18 ---> TARGET hit:	$60.0
+TWTR price:		$34.85
+GOOG price:		$1126.0
+AAPL price:		$176.94
+SIRI price:		$6.48
+EBAY price:		$43.68 ---> STOP LOSS hit:	$45.0
+TIME: 17:26:49.957150
+******************************
+GOOG price:		$1126.0
+TWTR price:		$34.85
+AAPL price:		$176.94
+UGAZ price:		$61.18 ---> TARGET hit:	$60.0
+SIRI price:		$6.48
+EBAY price:		$43.68 ---> STOP LOSS hit:	$45.0
+UAA price:		$17.16
+Could not find stock price for AMZ
+TSLA price:		$329.1 ---> STOP LOSS hit:	$340.0
+TIME: 17:27:00.399515
+******************************
+TWTR price:		$34.85
+UAA price:		$17.16
+GOOG price:		$1126.0
+TSLA price:		$329.1 ---> STOP LOSS hit:	$340.0
+SIRI price:		$6.48
+AAPL price:		$176.94
+Could not find stock price for AMZ
+EBAY price:		$43.68 ---> STOP LOSS hit:	$45.0
+UGAZ price:		$61.18 ---> TARGET hit:	$60.0
+TIME: 17:27:03.983697
+******************************
+AAPL price:		$176.94
+SIRI price:		$6.48
+EBAY price:		$43.68 ---> STOP LOSS hit:	$45.0
+TWTR price:		$34.85
+Could not find stock price for AMZ
+UAA price:		$17.16
+UGAZ price:		$61.18 ---> TARGET hit:	$60.0
+TSLA price:		$329.1 ---> STOP LOSS hit:	$340.0
+GOOG price:		$1126.0
+TIME: 17:27:11.292141
+******************************
+Could not find stock price for AMZ
+AAPL price:		$176.94
+UAA price:		$17.16
+GOOG price:		$1126.0
+TSLA price:		$329.1 ---> STOP LOSS hit:	$340.0
+SIRI price:		$6.48
+TWTR price:		$34.85
+UGAZ price:		$61.18 ---> TARGET hit:	$60.0
+EBAY price:		$43.68 ---> STOP LOSS hit:	$45.0
+TIME: 17:27:37.850811
+******************************
+TWTR price:		$34.85
+UGAZ price:		$61.18 ---> TARGET hit:	$60.0
+TSLA price:		$329.1 ---> STOP LOSS hit:	$340.0
+SIRI price:		$6.48
+AAPL price:		$176.94
+EBAY price:		$43.68 ---> STOP LOSS hit:	$45.0
+UAA price:		$17.16
+Could not find stock price for AMZ
+GOOG price:		$1126.0
+TIME: 17:28:17.537355
+******************************
+TWTR price:		$34.85
+SIRI price:		$6.48
+UAA price:		$17.16
+UGAZ price:		$61.18 ---> TARGET hit:	$60.0
+AAPL price:		$176.94
+TSLA price:		$329.1 ---> STOP LOSS hit:	$340.0
+GOOG price:		$1126.0
+EBAY price:		$43.68 ---> STOP LOSS hit:	$45.0
+TIME: 17:28:27.489250
+******************************
+TSLA price:		$329.1 ---> STOP LOSS hit:	$340.0
+TWTR price:		$34.85
+AAPL price:		$176.94
+UGAZ price:		$61.18 ---> TARGET hit:	$60.0
+SIRI price:		$6.48
+GOOG price:		$1126.0
+EBAY price:		$43.68 ---> STOP LOSS hit:	$45.0
+UAA price:		$17.16
+TIME: 17:29:00.145885
+******************************
+UAA price:		$17.16
+SIRI price:		$6.48
+AAPL price:		$176.94
+EBAY price:		$43.68 ---> STOP LOSS hit:	$45.0
+TSLA price:		$329.1 ---> STOP LOSS hit:	$340.0
+TWTR price:		$34.85
+GOOG price:		$1126.0
+UGAZ price:		$61.18 ---> TARGET hit:	$60.0
+TIME: 17:29:06.964778
+******************************
+SIRI price:		$6.48
+AAPL price:		$176.94
+GOOG price:		$1126.0
+UAA price:		$17.16
+TWTR price:		$34.85
+UGAZ price:		$61.18 ---> TARGET hit:	$60.0
+TSLA price:		$329.1 ---> STOP LOSS hit:	$340.0
+EBAY price:		$43.68 ---> STOP LOSS hit:	$45.0
+TIME: 17:29:32.874396
+******************************
+GOOG price:		$1126.0
+UAA price:		$17.16
+EBAY price:		$43.68 ---> STOP LOSS hit:	$45.0
+TWTR price:		$34.85
+AAPL price:		$176.94
+SIRI price:		$6.48
+UGAZ price:		$61.18 ---> TARGET hit:	$60.0
+TSLA price:		$329.1 ---> STOP LOSS hit:	$340.0
+TIME: 17:29:53.211439
+******************************
+GOOG price:		$1126.0
+UAA price:		$17.16
+SIRI price:		$6.48
+EBAY price:		$43.68 ---> STOP LOSS hit:	$45.0
+TSLA price:		$329.1 ---> STOP LOSS hit:	$340.0
+TWTR price:		$34.85
+AAPL price:		$176.94
+UGAZ price:		$61.18 ---> TARGET hit:	$60.0
+TIME: 17:30:00.477550
+******************************
+GOOG price:		$1126.0
+UAA price:		$17.16
+SIRI price:		$6.48
+EBAY price:		$43.68 ---> STOP LOSS hit:	$45.0
+TSLA price:		$329.1 ---> STOP LOSS hit:	$340.0
+TWTR price:		$34.85
+AAPL price:		$176.94
+UGAZ price:		$61.18 ---> TARGET hit:	$60.0
+TIME: 17:34:04.755117
+******************************
+
+TIME: 17:34:58.849914
+******************************
+TIME: 17:35:07.930222
+******************************
+
+TIME: 17:36:20.147615
+******************************
+
+TIME: 17:36:43.339241
+******************************
+
+TIME: 17:37:18.708549
+******************************
+TWTR price:		$34.85
+SIRI price:		$6.48
+UAA price:		$17.16
+TSLA price:		$329.1 ---> STOP LOSS hit:	$340.0
+EBAY price:		$43.68 ---> STOP LOSS hit:	$45.0
+AAPL price:		$176.94
+GOOG price:		$1126.0
+UGAZ price:		$61.18 ---> TARGET hit:	$60.0
+
+TIME: 17:37:26.573148
+******************************
+GOOG price:		$1126.0
+SIRI price:		$6.48
+TSLA price:		$329.1 ---> STOP LOSS hit:	$340.0
+TWTR price:		$34.85
+EBAY price:		$43.68 ---> STOP LOSS hit:	$45.0
+UGAZ price:		$61.18 ---> TARGET hit:	$60.0
+UAA price:		$17.16
+AAPL price:		$176.94
+
+TIME: 17:37:53.650841
+******************************
+AAPL price:		$176.94
+UAA price:		$17.16
+UGAZ price:		$61.18 ---> TARGET hit:	$60.0
+EBAY price:		$43.68 ---> STOP LOSS hit:	$45.0
+GOOG price:		$1126.0
+TSLA price:		$329.1 ---> STOP LOSS hit:	$340.0
+TWTR price:		$34.85
+SIRI price:		$6.48

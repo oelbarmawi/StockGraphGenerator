@@ -3,7 +3,7 @@ from urllib3 import PoolManager
 from datetime import datetime
 from sys import maxsize, exit
 from time import sleep
-from multiprocessing import Pool as ThreadPool
+from multiprocessing import Pool, cpu_count
 import certifi
 import smtplib
 
@@ -102,6 +102,9 @@ def getLiveData(ticker):
 		subj = "Target hit! Sell {}".format(ticker)
 		# sendEmail(subj, message)
 
+	# result = ''.join(info)
+	# output_file.write(result)
+	# print(result)
 	return ''.join(info)
 
 def main():
@@ -110,31 +113,33 @@ def main():
 	ticker_keys = readStockData('dummy_data.txt')
 	getEmailCredentials('sensitive.txt')
 	border = "\n" + ("*" * 30)
-	num_threads = 10
+	num_processes = cpu_count()
 
 	"""Begin web scraping"""
-	while True:
-		try:
-			"""Creating 'num_threads' to run the getLiveData() function"""
-			pool = ThreadPool(num_threads)
-			"""results is a list of return values from getLiveData"""
-			results = pool.map(getLiveData, ticker_keys)
-			current_time = "TIME: {}".format(datetime.now().time())
-			print(current_time)
-			print(border)
-			output_file.write(current_time)
-			output_file.write(border)
-			for info in results:
-				output_file.write(info)
-				print(info)
-			output_file.write("\n")
-			pool.close()
-			sleep(sleep_time)
-		except KeyboardInterrupt:
-			print("\nExiting...")
-			output_file.close()
-			pool.close()
-			exit() #System call
+	# while True:
+	try:
+		"""Creating 'num_processes' to run the getLiveData() function"""
+		pool = Pool(num_processes)
+		"""results is a list of return values from getLiveData"""
+		results = pool.map(func=getLiveData, iterable=ticker_keys)
+
+		current_time = "\nTIME: {}".format(datetime.now().time())
+		print(current_time)
+		print(border)
+		output_file.write(current_time)
+		output_file.write(border)
+
+		for info in results:
+			output_file.write(info)
+			print(info)
+		output_file.write("\n")
+		pool.close()
+		# sleep(sleep_time)
+	except KeyboardInterrupt:
+		print("\nExiting...")
+		output_file.close()
+		pool.close()
+		exit() #System call
 		
 if __name__ == '__main__':
 	main()
