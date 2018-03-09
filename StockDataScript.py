@@ -110,9 +110,9 @@ def main():
 	ticker_keys = readStockData('dummy_data.txt')
 	getEmailCredentials('sensitive.txt')
 	border = "\n" + ("*" * 30)
-	num_processes = cpu_count()
+	num_processes = cpu_count() # cpu_count() is 4 for my machine
 
-	"""Begin web scraping"""
+	"""Begin web scraping -- To terminate press Ctrl-C"""
 	while True:
 		try:
 			"""Creating 'num_processes' to run the getLiveData() function"""
@@ -129,7 +129,7 @@ def main():
 			for info in results:
 				output_file.write(info)
 				print(info)
-				
+
 			output_file.write("\n")
 			pool.close()
 			sleep(sleep_time)

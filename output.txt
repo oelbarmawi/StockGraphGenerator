@@ -609,3 +609,14 @@ UAA price:		$17.16
 TSLA price:		$329.1 ---> STOP LOSS hit:	$340.0
 SIRI price:		$6.48
 GOOG price:		$1126.0
+
+TIME: 17:42:19.095611
+******************************
+AAPL price:		$176.94
+TSLA price:		$329.1 ---> STOP LOSS hit:	$340.0
+SIRI price:		$6.48
+EBAY price:		$43.68 ---> STOP LOSS hit:	$45.0
+GOOG price:		$1126.0
+TWTR price:		$34.85
+UGAZ price:		$61.18 ---> TARGET hit:	$60.0
+UAA price:		$17.16
