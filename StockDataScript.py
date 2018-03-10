@@ -21,7 +21,8 @@ targets = {}
 username, password = "", ""
 fromaddr, toaddr = "", ""
 current_time = ""
-output_file = open('output.txt', 'a')
+output_filename = "output.txt"
+out_file = open(output_filename, 'a') # the second argurment 'a' - append
 
 
 def sendEmail(subject, message_body):
@@ -68,7 +69,7 @@ def readStockData(filename):
 	return tickers
 
 def getLiveData(ticker, unused_arg=None):
-	global targets, output_file, current_time
+	global targets, out_file, current_time
 
 	info = []
 	stop_loss = targets[ticker][0]
@@ -94,59 +95,62 @@ def getLiveData(ticker, unused_arg=None):
 	info.append("\n{} price:\t\t${}".format(ticker, current_price))
 
 	"""Notify me if a stop-loss or a target price has been hit!"""
-	if current_price < stop_loss:
-		info.append(" ---> STOP LOSS hit:\t${}".format(stop_loss))
+	if current_price =< stop_loss or current_price >= target_price:
 		message = "The current price of {} is ${} -- Time: {}".format(ticker, current_price, current_time)
-		subj = "Stop-Loss hit! Sell {}!".format(ticker)
-		# sendEmail(subj, message)
+		if current_price <= stop_loss:
+			info.append(" ---> STOP LOSS hit:\t${}".format(stop_loss))
+			subj = "Stop-Loss hit! Sell {}!".format(ticker)
+		else:
+			info.append(" ---> TARGET hit:\t${}".format(target_price))
+			subj = "Target hit! Sell {}".format(ticker)
+		sendEmail(subj, message)
 
-	elif current_price >= target_price:
-		info.append(" ---> TARGET hit:\t${}".format(target_price))
-		message = "The current price of {} is ${} -- Time: {}".format(ticker, current_price, current_time)
-		subj = "Target hit! Sell {}".format(ticker)
-		# sendEmail(subj, message)
-
+	""" Results of http response formatted and appended to the specified output file"""
 	result = ''.join(info)
-	output_file.write(result)
+	out_file.write(result)
 	print(result)
 	return None
 
 def main():
-	global output_file, current_time
+	global out_file, current_time
 
 	ticker_keys = readStockData('dummy_data.txt')
 	getEmailCredentials('sensitive.txt')
 	border = "\n" + ("*" * 30)
 
-	"""Begin web scraping"""
+	"""Begin web scraping -- press Ctrl+C to terminate execution"""
 	while True:
 		try:
 			threads = []
+			"""Create a thread for each ticker"""
 			for t in ticker_keys:
 				threads.append(Thread(target=getLiveData, args=(t, None)))
 
+			"""Output formatting"""
 			current_time = "\nTIME: {}".format(datetime.now().time())
 			print(current_time)
 			print(border)
-			output_file.write(current_time)
-			output_file.write(border)
+			out_file.write(current_time)
+			out_file.write(border)
 			
+			"""Begin execution of each thread in the thread list"""
 			for thread in threads:
 				thread.start()
 
+			"""Wait for each thread to complete execution"""
 			for thread in threads:
 				thread.join()
 
+			"""Sleep for the specified amount of time to prevent overusage of CPU"""
 			sleep(sleep_time)
 
 		except KeyboardInterrupt:
 			"""Make sure all threads finish execution before exiting"""
 			for thread in threads:
 				thread.join()
-			output_file.close()
+			out_file.close()
 			print("\nExiting...")
 			exit() #System call
-
 
 if __name__ == '__main__':
 	main()

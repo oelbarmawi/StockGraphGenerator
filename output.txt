@@ -620,3 +620,27 @@ GOOG price:		$1126.0
 TWTR price:		$34.85
 UGAZ price:		$61.18 ---> TARGET hit:	$60.0
 UAA price:		$17.16
+
+TIME: 16:20:31.845737
+TIME: 16:21:44.767681
+******************************
+EBAY price:		$43.81 ---> STOP LOSS hit:	$45.0
+SIRI price:		$6.54
+UAA price:		$17.05
+TSLA price:		$327.17 ---> STOP LOSS hit:	$340.0
+TWTR price:		$35.35
+AAPL price:		$179.98
+UGAZ price:		$59.7
+CERN price:		$64.91 ---> TARGET hit:	$64.0
+GOOG price:		$1160.04 ---> TARGET hit:	$1140.0
+TIME: 16:23:39.589780
+******************************
+CERN price:		$64.91 ---> TARGET hit:	$64.0
+EBAY price:		$43.81 ---> STOP LOSS hit:	$45.0
+GOOG price:		$1160.04 ---> TARGET hit:	$1140.0
+TWTR price:		$35.35
+SIRI price:		$6.54
+AAPL price:		$179.98
+UAA price:		$17.05
+UGAZ price:		$59.7
+TSLA price:		$327.17 ---> STOP LOSS hit:	$340.0
