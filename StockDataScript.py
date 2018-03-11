@@ -4,12 +4,13 @@ from datetime import datetime
 from sys import maxsize, exit
 from time import sleep
 from threading import Thread
+from Stock import *
 import certifi
 import smtplib
 
 
 """Cycle repeats every 'sleep_time' seconds"""
-sleep_time = 5
+sleep_time = 60
 """
 'targets' (dictonary)
 key: ticker (string)
@@ -55,16 +56,17 @@ def readStockData(filename):
 	global targets, ticker_keys
 	""" Read input file and store into the 'targets' dictionary.
 	Format of each line in the input file: 
-	<ticker_name> <stop-loss price> <target price>
+	<ticker_name> <stop-loss price> <target price> <entry point>
 	"""
 	tickers = []
 	f = open(filename)
 	for line in f.readlines():
 		sep = line.split(" ")
-		if len(sep) == 3:
-			t = sep[0].strip()
-			targets[t] = (float(sep[1].strip()), float(sep[2].strip()))
-			tickers.append(t)
+		assert len(sep) == 4, "Invalid .txt file format --> readStockData()"
+		t = sep[0].strip()
+		stock_data = Stock(t, float(sep[1].strip()), float(sep[2].strip()), float(sep[3].strip()))
+		targets[t] = stock_data
+		tickers.append(t)
 	f.close()
 	return tickers
 
@@ -72,8 +74,7 @@ def getLiveData(ticker, unused_arg=None):
 	global targets, out_file, current_time
 
 	info = []
-	stop_loss = targets[ticker][0]
-	target_price = targets[ticker][1]
+	stock = targets[ticker]
 
 	"""Scrape data from secure http server"""
 	try:
@@ -82,6 +83,7 @@ def getLiveData(ticker, unused_arg=None):
 		r = http.request('GET', url)
 	except:
 		return "\nCould not find stock price for " + ticker
+
 	if (r.status != 200):
 		print("Something Went Wrong\nStatus Code:", r.status)
 		return
@@ -92,18 +94,28 @@ def getLiveData(ticker, unused_arg=None):
 	current_price = p.find("span", { "class": "Trsdu(0.3s) Fw(b) Fz(36px) Mb(-4px) D(ib)"}).text.strip()
 	current_price = float(current_price.replace(",", ""))
 
+	stock.current_price = current_price
+
 	info.append("\n{} price:\t\t${}".format(ticker, current_price))
 
-	"""Notify me if a stop-loss or a target price has been hit!"""
-	if current_price =< stop_loss or current_price >= target_price:
+	"""Notify me if a stop-loss, target price, or an entry point has been hit!"""
+	if stock.stop_hit() or stock.target_hit() or stock.entry_hit():
 		message = "The current price of {} is ${} -- Time: {}".format(ticker, current_price, current_time)
-		if current_price <= stop_loss:
-			info.append(" ---> STOP LOSS hit:\t${}".format(stop_loss))
+		if stock.stop_hit():
+			info.append(" ---> STOP LOSS hit:\t${}".format(stock.stop_price))
 			subj = "Stop-Loss hit! Sell {}!".format(ticker)
+
+		elif stock.entry_hit():
+			info.append(" ---> Entry point hit:\t${}".format(stock.entry))
+			subj = "Entry point hit! Buy {}!".format(ticker)
+
 		else:
-			info.append(" ---> TARGET hit:\t${}".format(target_price))
+			info.append(" ---> TARGET hit:\t${}".format(stock.target_price))
 			subj = "Target hit! Sell {}".format(ticker)
-		sendEmail(subj, message)
+
+		if not stock.notified:
+			# sendEmail(subj, message)
+			stock.notified = True
 
 	""" Results of http response formatted and appended to the specified output file"""
 	result = ''.join(info)
@@ -114,7 +126,7 @@ def getLiveData(ticker, unused_arg=None):
 def main():
 	global out_file, current_time
 
-	ticker_keys = readStockData('dummy_data.txt')
+	ticker_keys = readStockData('test_data.txt')
 	getEmailCredentials('sensitive.txt')
 	border = "\n" + ("*" * 30)
 
@@ -154,3 +166,25 @@ def main():
 
 if __name__ == '__main__':
 	main()
+
+"""
+Testing Purposes - 'test_data.txt' should print the following:
+--------------------------------------------------------------
+UGAZ price:		$59.7
+
+GOOG price:		$1160.04 ---> TARGET hit:	$1.0
+
+TWTR price:		$35.35 ---> STOP LOSS hit:	$100000.0
+
+UAA price:		$17.05
+
+CERN price:		$64.91
+
+TSLA price:		$327.17
+
+SIRI price:		$6.54 ---> Entry point hit:	$0.1
+
+AAPL price:		$179.98 ---> TARGET hit:	$1.0
+
+EBAY price:		$43.81 ---> STOP LOSS hit:	$100000.0
+"""

@@ -541,19 +541,6 @@ TSLA price:		$329.1 ---> STOP LOSS hit:	$340.0
 TWTR price:		$34.85
 AAPL price:		$176.94
 UGAZ price:		$61.18 ---> TARGET hit:	$60.0
-TIME: 17:34:04.755117
-******************************
-
-TIME: 17:34:58.849914
-******************************
-TIME: 17:35:07.930222
-******************************
-
-TIME: 17:36:20.147615
-******************************
-
-TIME: 17:36:43.339241
-******************************
 
 TIME: 17:37:18.708549
 ******************************
@@ -621,7 +608,6 @@ TWTR price:		$34.85
 UGAZ price:		$61.18 ---> TARGET hit:	$60.0
 UAA price:		$17.16
 
-TIME: 16:20:31.845737
 TIME: 16:21:44.767681
 ******************************
 EBAY price:		$43.81 ---> STOP LOSS hit:	$45.0
@@ -644,3 +630,169 @@ AAPL price:		$179.98
 UAA price:		$17.05
 UGAZ price:		$59.7
 TSLA price:		$327.17 ---> STOP LOSS hit:	$340.0
+TIME: 17:22:07.342561
+******************************
+UAA price:		$17.05
+AAPL price:		$179.98
+TWTR price:		$35.35
+UGAZ price:		$59.7
+SIRI price:		$6.54
+TSLA price:		$327.17 ---> STOP LOSS hit:	$340.0
+EBAY price:		$43.81 ---> STOP LOSS hit:	$45.0
+GOOG price:		$1160.04 ---> TARGET hit:	$1140.0
+CERN price:		$64.91 ---> TARGET hit:	$64.0
+TIME: 22:46:06.871894
+******************************
+SLM price:		$11.27
+TIME: 23:02:36.182165
+******************************
+QID price:		$10.64
+SLM price:		$11.27
+RDC price:		$12.03
+JNUG price:		$13.21
+TIME: 23:07:32.498139
+******************************
+RDC price:		$12.03
+JNUG price:		$13.21
+QID price:		$10.64
+SLM price:		$11.27
+TIME: 23:12:54.816844
+******************************
+QID price:		$10.64
+SLM price:		$11.27
+RDC price:		$12.03
+JNUG price:		$13.21
+TIME: 00:02:32.434284
+******************************
+QID price:		$10.64
+JNUG price:		$13.21
+RDC price:		$12.03
+SLM price:		$11.27
+TIME: 00:05:24.342868
+******************************
+RDC price:		$12.03
+JNUG price:		$13.21
+QID price:		$10.64
+SLM price:		$11.27 ---> Entry point hit:	$11.26
+TIME: 00:05:31.629479
+******************************
+SLM price:		$11.27 ---> Entry point hit:	$11.26
+QID price:		$10.64
+JNUG price:		$13.21
+RDC price:		$12.03
+TIME: 00:05:37.859121
+******************************
+RDC price:		$12.03
+SLM price:		$11.27 ---> Entry point hit:	$11.26
+QID price:		$10.64
+JNUG price:		$13.21
+TIME: 00:05:44.067074
+******************************
+QID price:		$10.64
+JNUG price:		$13.21
+RDC price:		$12.03
+SLM price:		$11.27 ---> Entry point hit:	$11.26
+TIME: 00:06:15.130591
+******************************
+SLM price:		$11.27
+JNUG price:		$13.21
+RDC price:		$12.03
+QID price:		$10.64
+TIME: 00:06:55.026553
+******************************
+QID price:		$10.64
+RDC price:		$12.03
+JNUG price:		$13.21
+SLM price:		$11.27
+TIME: 00:08:39.702780
+******************************
+TWTR price:		$35.35
+SIRI price:		$6.54
+UGAZ price:		$59.7
+EBAY price:		$43.81 ---> STOP LOSS hit:	$45.0
+AAPL price:		$179.98
+TSLA price:		$327.17 ---> STOP LOSS hit:	$340.0
+GOOG price:		$1160.04 ---> TARGET hit:	$1140.0
+CERN price:		$64.91 ---> TARGET hit:	$64.0
+UAA price:		$17.05
+TIME: 00:09:08.790796
+******************************
+AAPL price:		$179.98
+TSLA price:		$327.17 ---> STOP LOSS hit:	$340.0
+GOOG price:		$1160.04 ---> TARGET hit:	$1140.0
+EBAY price:		$43.81 ---> STOP LOSS hit:	$45.0
+TWTR price:		$35.35
+CERN price:		$64.91 ---> TARGET hit:	$64.0
+UAA price:		$17.05
+SIRI price:		$6.54
+UGAZ price:		$59.7
+TIME: 00:09:13.076137
+******************************
+TSLA price:		$327.17 ---> STOP LOSS hit:	$340.0
+EBAY price:		$43.81 ---> STOP LOSS hit:	$45.0
+CERN price:		$64.91 ---> TARGET hit:	$64.0
+SIRI price:		$6.54
+AAPL price:		$179.98
+UGAZ price:		$59.7
+UAA price:		$17.05
+GOOG price:		$1160.04 ---> TARGET hit:	$1140.0
+TWTR price:		$35.35
+TIME: 00:09:24.360573
+******************************
+SLM price:		$11.27
+JNUG price:		$13.21
+RDC price:		$12.03
+QID price:		$10.64
+TIME: 00:10:54.112722
+******************************
+JNUG price:		$13.21
+QID price:		$10.64
+SLM price:		$11.27
+RDC price:		$12.03
+TIME: 00:14:24.953950
+******************************
+SLM price:		$11.27
+QID price:		$10.64
+JNUG price:		$13.21
+RDC price:		$12.03
+TIME: 00:15:18.387838
+******************************
+JNUG price:		$13.21
+QID price:		$10.64
+RDC price:		$12.03
+SLM price:		$11.27
+TIME: 00:15:29.033629
+******************************
+RDC price:		$12.03
+JNUG price:		$13.21
+QID price:		$10.64
+SLM price:		$11.27
+TIME: 00:15:46.973601
+******************************
+JNUG price:		$13.21
+RDC price:		$12.03
+QID price:		$10.64
+SLM price:		$11.27
+TIME: 00:16:40.296464
+******************************
+RDC price:		$12.03
+JNUG price:		$13.21
+SLM price:		$11.27
+QID price:		$10.64
+TIME: 00:31:05.719052
+******************************
+RDC price:		$12.03
+JNUG price:		$13.21
+QID price:		$10.64
+SLM price:		$11.27
+TIME: 00:41:32.103754
+******************************
+UGAZ price:		$59.7
+GOOG price:		$1160.04 ---> TARGET hit:	$1.0
+TWTR price:		$35.35 ---> STOP LOSS hit:	$100000.0
+UAA price:		$17.05
+CERN price:		$64.91
+TSLA price:		$327.17
+SIRI price:		$6.54 ---> Entry point hit:	$0.1
+AAPL price:		$179.98 ---> TARGET hit:	$1.0
+EBAY price:		$43.81 ---> STOP LOSS hit:	$100000.0
